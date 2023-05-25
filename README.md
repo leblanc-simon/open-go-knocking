@@ -34,8 +34,8 @@ open-go-knocking --udp example.com 1337 1338:tcp 1339
 
 ## Options
 
-* `--tcp`: 
-* `--udp`: 
+* `--tcp`: use TCP protocol by default
+* `--udp`: use UPD protocol by default
 * `--delay` (in ms): 
 * `--version`: Show the current version
 * `--help`: Show the help
