@@ -20,7 +20,7 @@ var (
 	versionFlag = flag.Bool("version", false, "Show version")
 	tcpFlag = flag.Bool("tcp", false, "Send all packets to TCP")
 	udpFlag = flag.Bool("udp", false, "Send all packets to UDP")
-	delayFlag = flag.Int("delay", 5, "Delay between each packet")
+	delayFlag = flag.Int("delay", 5, "Delay between each packet (in milliseconds)")
 
 	version = "develop"
 	appName = "OpenGoKnocking"
@@ -146,7 +146,7 @@ func main() {
 	}
 
 	if flag.CommandLine.NArg() < 2 {
-		exitWithError(1, "Arguments missing !", true)
+		exitWithError(ExitCodeBadArg, "Arguments missing !", true)
 	}
 
 	host := getHostAndVerify()
