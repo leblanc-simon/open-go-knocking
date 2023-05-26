@@ -22,21 +22,25 @@ Binaries are availables for GNU/Linux, MacOS and Windows
 ## Usage
 
 ```bash
-# Knock to the server example.com at port 1337 (tcp), then 1338 (UDP) and finally 1339 (TCP)
-open-go-knocking example.com 1337:tcp 1338:udp 1339:tcp
+# Knock to the server 192.168.0.42 at port 1337 (tcp), then 1338 (UDP) and finally 1339 (TCP)
+open-go-knocking 192.168.0.42 1337:tcp 1338:udp 1339:tcp
 
 # If the majority of ports are TCP ports, you can use the following syntax (ports without protocol will be in TCP)
-open-go-knocking --tcp example.com 1337 1338:udp 1339
+open-go-knocking --tcp 192.168.0.42 1337 1338:udp 1339
 
 # If the majority of ports are UDP ports, you can use the following syntax (ports without protocol will be in UDP)
-open-go-knocking --udp example.com 1337 1338:tcp 1339
+open-go-knocking --udp 192.168.0.42 1337 1338:tcp 1339
+
+# If you use domain name, you can increase the timeout to take account of resolution time
+open-go-knocking --timeout 100 example.com 1337:tcp 1338:udp 1339:tcp
 ```
 
 ## Options
 
 * `--tcp`: use TCP protocol by default
 * `--udp`: use UPD protocol by default
-* `--delay` (in ms): delay in milliseconds between 2 packets send to host
+* `--delay` (in ms / default 1): delay in milliseconds between 2 packets send to host
+* `--timeout` (in ms / default 5): timeout in milliseconds before autoclose connection
 * `--version`: Show the current version
 * `--help`: Show the help
 

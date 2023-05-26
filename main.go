@@ -20,7 +20,8 @@ var (
 	versionFlag = flag.Bool("version", false, "Show version")
 	tcpFlag = flag.Bool("tcp", false, "Send all packets to TCP")
 	udpFlag = flag.Bool("udp", false, "Send all packets to UDP")
-	delayFlag = flag.Int("delay", 5, "Delay between each packet (in milliseconds)")
+	delayFlag = flag.Int("delay", 1, "Delay between each packet (in milliseconds)")
+	timeoutFlag = flag.Int("timeout", 5, "Timeout before close connection")
 
 	version = "develop"
 	appName = "OpenGoKnocking"
@@ -125,7 +126,7 @@ func getPacketsAndVerify() ([]packet) {
 func knock(host string, packet packet) {
 	destination := net.JoinHostPort(host, strconv.Itoa(packet.Port))
 	
-	conn, err := net.DialTimeout(packet.Protocol, destination, 5 * time.Millisecond)
+	conn, err := net.DialTimeout(packet.Protocol, destination, time.Duration(*timeoutFlag) * time.Millisecond)
 	if err != nil {
 		// Expected error
 	} else {
